@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sayı Tahmin Oyunu</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        input { padding: 10px; font-size: 16px; width: 100px; text-align: center; }
+        button { padding: 10px 15px; font-size: 16px; cursor: pointer; }
+        #mesaj { margin-top: 20px; font-size: 18px; font-weight: bold; }
+        .geri { display: inline-block; margin-top: 30px; text-decoration: none; color: #007bff; }
+    </style>
+</head>
+<body>
+    <h1>Sayı Tahmin Oyunu</h1>
+    <p>1 ile 100 arasında bir sayı tuttum. Tahmin etmeye çalış!</p>
+    
+    <input type="number" id="tahminInput" min="1" max="100" placeholder="Sayı gir">
+    <button onclick="tahminEt()">Tahmin Et</button>
+
+    <div id="mesaj"></div>
+    <br>
+    <button onclick="oyunuSifirla()" style="margin-top: 10px;">Yeniden Başlat</button>
+    <br>
+    <a href="index.html" class="geri">← Menüye Dön</a>
+
+    <script>
+        let rastgeleSayi = Math.floor(Math.random() * 100) + 1;
+        let denemeSayisi = 0;
+
+        function tahminEt() {
+            let kullaniciTahmini = parseInt(document.getElementById('tahminInput').value);
+            let mesajKutusu = document.getElementById('mesaj');
+            denemeSayisi++;
+
+            if (isNaN(kullaniciTahmini) || kullaniciTahmini < 1 || kullaniciTahmini > 100) {
+                mesajKutusu.innerHTML = "Lütfen 1 ile 100 arasında geçerli bir sayı girin.";
+                return;
+            }
+
+            if (kullaniciTahmini === rastgeleSayi) {
+                mesajKutusu.innerHTML = `Tebrikler! ${rastgeleSayi} sayısını ${denemeSayisi}. denemede buldun! 🎉`;
+                mesajKutusu.style.color = "green";
+            } else if (kullaniciTahmini > rastgeleSayi) {
+                mesajKutusu.innerHTML = "Daha küçük bir sayı gir.";
+                mesajKutusu.style.color = "red";
+            } else {
+                mesajKutusu.innerHTML = "Daha büyük bir sayı gir.";
+                mesajKutusu.style.color = "red";
+            }
+        }
+
+        function oyunuSifirla() {
+            rastgeleSayi = Math.floor(Math.random() * 100) + 1;
+            denemeSayisi = 0;
+            document.getElementById('mesaj').innerHTML = "Oyun sıfırlandı. Yeni bir sayı tuttum!";
+            document.getElementById('mesaj').style.color = "black";
+            document.getElementById('tahminInput').value = '';
+        }
+    </script>
+</body>
+</html>

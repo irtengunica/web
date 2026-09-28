@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Projeleri | irtengunica</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            width: 100%;
+            padding: 3rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: #bdc3c7;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 90%;
+            margin: 3rem auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .folder-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 30px 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #2c3e50;
+            font-size: 1.25rem;
+            font-weight: 600;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border-bottom: 5px solid #3498db;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .folder-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+            color: #3498db;
+        }
+
+        .icon {
+            font-size: 3rem;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 2rem;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Web Tasarım Projeleri</h1>
+        <p>irtengunica.somee.com Dizin Erişimi</p>
+    </header>
+
+    <div class="container">
+        <!-- Klasör Bağlantıları -->
+        <a href="teknoloji_blogu/" class="folder-card">
+            <span class="icon">💻</span>
+            <span>Teknoloji Blogu</span>
+        </a>
+        
+        <a href="mars_projesi/" class="folder-card">
+            <span class="icon">🚀</span>
+            <span>Mars Projesi</span>
+        </a>
+        
+        <a href="kahraman_akademisi/" class="folder-card">
+            <span class="icon">🦸‍♂️</span>
+            <span>Kahraman Akademisi</span>
+        </a>
+        
+        <a href="web2/" class="folder-card">
+            <span class="icon">🌐</span>
+            <span>Web 2</span>
+        </a>
+        
+        <a href="sehir_tanitim/" class="folder-card">
+            <span class="icon">🏙️</span>
+            <span>Şehir Tanıtım</span>
+        </a>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Tüm projeler ve ders içerikleri ilgili klasörlerde yer almaktadır.</p>
+    </footer>
+
+</body>
+</html>

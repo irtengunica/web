@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benim Oyunum</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        .tahta { display: grid; grid-template-columns: repeat(3, 100px); gap: 5px; justify-content: center; margin-top: 20px; }
+        .hucre { width: 100px; height: 100px; font-size: 36px; font-weight: bold; background-color: #eee; border: 2px solid #333; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+        .hucre:hover { background-color: #ddd; }
+        #durum { margin-top: 20px; font-size: 20px; font-weight: bold; }
+        button { margin-top: 15px; padding: 10px 15px; font-size: 16px; cursor: pointer; }
+        .geri { display: inline-block; margin-top: 30px; text-decoration: none; color: #007bff; }
+    </style>
+</head>
+<body>
+    <h1>Benim Oyunum (XOX)</h1>
+    <div id="durum">Sıra: X</div>
+    
+    <div class="tahta" id="tahta">
+        <div class="hucre" onclick="hamleYap(this, 0)"></div>
+        <div class="hucre" onclick="hamleYap(this, 1)"></div>
+        <div class="hucre" onclick="hamleYap(this, 2)"></div>
+        <div class="hucre" onclick="hamleYap(this, 3)"></div>
+        <div class="hucre" onclick="hamleYap(this, 4)"></div>
+        <div class="hucre" onclick="hamleYap(this, 5)"></div>
+        <div class="hucre" onclick="hamleYap(this, 6)"></div>
+        <div class="hucre" onclick="hamleYap(this, 7)"></div>
+        <div class="hucre" onclick="hamleYap(this, 8)"></div>
+    </div>
+
+    <button onclick="oyunuSifirla()">Yeniden Başlat</button>
+    <br>
+    <a href="index.html" class="geri">← Menüye Dön</a>
+
+    <script>
+        let tahta = ["", "", "", "", "", "", "", "", ""];
+        let siradakiOyuncu = "X";
+        let oyunBitti = false;
+
+        const kazanmaDurumları = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8], 
+            [0, 3, 6], [1, 4, 7], [2, 5, 8], 
+            [0, 4, 8], [2, 4, 6]             
+        ];
+
+        function hamleYap(hucre, index) {
+            if (tahta[index] !== "" || oyunBitti) return;
+
+            tahta[index] = siradakiOyuncu;
+            hucre.innerText = siradakiOyuncu;
+
+            if (kazananiKontrolEt()) {
+                document.getElementById("durum").innerText = `Kazanan: ${siradakiOyuncu}! 🎉`;
+                oyunBitti = true;
+            } else if (!tahta.includes("")) {
+                document.getElementById("durum").innerText = "Oyun Berabere!";
+                oyunBitti = true;
+            } else {
+                siradakiOyuncu = siradakiOyuncu === "X" ? "O" : "X";
+                document.getElementById("durum").innerText = `Sıra: ${siradakiOyuncu}`;
+            }
+        }
+
+        function kazananiKontrolEt() {
+            for (let durum of kazanmaDurumları) {
+                let [a, b, c] = durum;
+                if (tahta[a] && tahta[a] === tahta[b] && tahta[a] === tahta[c]) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function oyunuSifirla() {
+            tahta = ["", "", "", "", "", "", "", "", ""];
+            siradakiOyuncu = "X";
+            oyunBitti = false;
+            document.getElementById("durum").innerText = "Sıra: X";
+            let hucreler = document.getElementsByClassName("hucre");
+            for (let i = 0; i < hucreler.length; i++) {
+                hucreler[i].innerText = "";
+            }
+        }
+    </script>
+</body>
+</html>

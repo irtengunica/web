@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taş Kağıt Makas</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        button { padding: 10px 20px; font-size: 16px; margin: 5px; cursor: pointer; }
+        #sonuc { margin-top: 20px; font-size: 20px; font-weight: bold; }
+        .geri { display: inline-block; margin-top: 30px; text-decoration: none; color: #007bff; }
+    </style>
+</head>
+<body>
+    <h1>Taş Kağıt Makas</h1>
+    <p>Seçiminizi yapın:</p>
+    
+    <button onclick="oyna('Taş')">Taş</button>
+    <button onclick="oyna('Kağıt')">Kağıt</button>
+    <button onclick="oyna('Makas')">Makas</button>
+
+    <div id="sonuc"></div>
+    <br>
+    <a href="index.html" class="geri">← Menüye Dön</a>
+
+    <script>
+        function oyna(kullaniciSecimi) {
+            const secenekler = ['Taş', 'Kağıt', 'Makas'];
+            const bilgisayarSecimi = secenekler[Math.floor(Math.random() * 3)];
+            let mesaj = `Senin seçimin: ${kullaniciSecimi} <br> Bilgisayarın seçimi: ${bilgisayarSecimi} <br><br>`;
+
+            if (kullaniciSecimi === bilgisayarSecimi) {
+                mesaj += "Sonuç: Berabere!";
+            } else if (
+                (kullaniciSecimi === 'Taş' && bilgisayarSecimi === 'Makas') ||
+                (kullaniciSecimi === 'Kağıt' && bilgisayarSecimi === 'Taş') ||
+                (kullaniciSecimi === 'Makas' && bilgisayarSecimi === 'Kağıt')
+            ) {
+                mesaj += "Sonuç: Kazandın! 🎉";
+            } else {
+                mesaj += "Sonuç: Kaybettin! 😢";
+            }
+
+            document.getElementById('sonuc').innerHTML = mesaj;
+        }
+    </script>
+</body>
+</html>
